@@ -6,15 +6,19 @@ import { NgForm } from '@angular/forms';
 
 
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  public employees!: Employee[];
-  public editEmployee!: Employee;
-  public deleteEmployee!: Employee;
+   public employees!: Employee[];
+   public editEmployee!: Employee;
+   public deleteEmployee!: Employee;
+
+
 
   constructor(private employeeService: EmployeeService){}
 
@@ -25,7 +29,7 @@ export class AppComponent implements OnInit{
   public getEmployees(): void{
     this.employeeService.getEmployees().subscribe(
       (response: Employee[]) => {
-        this.employees = response;
+        this.employees = response; 
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -61,7 +65,7 @@ export class AppComponent implements OnInit{
       );
   }
 
-  public onDeleteEmloyee(employeeId: number): void{
+  public onDeleteEmloyee(employeeId: number): void {
     this.employeeService.deleteEmployee(employeeId).subscribe(
       (response: void) => {
         console.log(response);
@@ -70,7 +74,7 @@ export class AppComponent implements OnInit{
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
-      );
+    );
   }
 
   public searchEmployees(key: string): void{
